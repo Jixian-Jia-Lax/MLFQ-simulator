@@ -19,10 +19,10 @@ class ProcessQueue {
 
         ProcessQueue(int priority,int quantum, int allotment);
         bool isEmpty();
-        bool run()
+        bool run(int timer)
         void enqueueOldProcess(processInQueue,int);
         void enqueueNewProcess(Process);
-        Process dequeue(void);
+        processInQueue dequeue(void);
 };
 
 

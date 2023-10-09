@@ -29,10 +29,33 @@ void ProcessQueue::enqueueNewProcess(Process) {
     this->myQueue.push(newProcessInQueue);
 }
 
-Process ProcessQueue::dequeue() {
-    return this->myQueue.pop().first;
+processInQueue ProcessQueue::dequeue() {
+    return this->myQueue.pop();
 }
 
-bool ProcessQueue::run() {
+bool ProcessQueue::run(int timer) {
+    if (this->isEmpty())
+        return false;
+    int counter = 0;
+    int size = myQueue.size()
+    processInQueue temp;
+    while(counter < size){
+        temp = this->dequeue();
+        if (temp.second < allotment) {
+            if(temp.first.run(timer,quantum)){
+                enqueueOldProcess(temp,temp.second - quantum);
+                return true;
+            }
+            else{
+                enqueueOldProcess(temp,temp.second);
+                counter ++;
+            }
+        }
+        else{
+            //move this process to lower priority
 
+            //todo
+        }
+    }
+    return false;
 }
